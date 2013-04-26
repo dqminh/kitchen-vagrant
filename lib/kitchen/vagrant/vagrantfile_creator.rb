@@ -89,6 +89,9 @@ module Kitchen
         if File.exists?(berksfile)
           arr << 'c.berkshelf.enabled = true'
           arr << %{  c.berkshelf.berksfile_path = "#{berksfile}"}
+          arr << %{  if c.berkshelf.respond_to?(:enabled)}
+          arr << %{    c.berkshelf.enabled = true}
+          arr << %{  end}
         end
       end
 
